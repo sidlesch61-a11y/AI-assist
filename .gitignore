@@ -1,0 +1,208 @@
+# ============================================
+# Dependencies
+# ============================================
+node_modules/
+.pnp
+.pnp.js
+.pnp.cjs
+
+# ============================================
+# Build Output
+# ============================================
+dist/
+dist-ssr/
+build/
+*.local
+
+# ============================================
+# Vite
+# ============================================
+.vite/
+vite.config.*.timestamp-*
+vite.config.*.temp.*
+
+# ============================================
+# Logs
+# ============================================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ============================================
+# Testing
+# ============================================
+coverage/
+.nyc_output/
+*.lcov
+.jest/
+
+# ============================================
+# Environment Variables
+# ============================================
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+.env.test
+!.env.example
+
+# ============================================
+# Editor / IDE
+# ============================================
+# VSCode
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+*.code-workspace
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# ============================================
+# OS Files
+# ============================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ============================================
+# Package Managers
+# ============================================
+# pnpm
+.pnpm-store/
+.pnpm-debug.log
+pnpm-lock.yaml
+
+# npm
+package-lock.json
+.npm
+
+# yarn
+yarn.lock
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# ============================================
+# TypeScript
+# ============================================
+*.tsbuildinfo
+.tsbuildinfo
+
+# ============================================
+# ESLint / Prettier
+# ============================================
+.eslintcache
+.stylelintcache
+.prettierignore
+
+# ============================================
+# Temporary Files
+# ============================================
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+*.backup
+*.old
+*.orig
+*.rej
+
+# ============================================
+# Cache
+# ============================================
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+.turbo/
+.sass-cache/
+.stylelintcache
+.eslintcache
+
+# ============================================
+# Storybook
+# ============================================
+storybook-static/
+
+# ============================================
+# Cypress
+# ============================================
+cypress/videos/
+cypress/screenshots/
+.cypress/
+
+# ============================================
+# Playwright
+# ============================================
+test-results/
+playwright-report/
+playwright/.cache/
+
+# ============================================
+# Misc
+# ============================================
+*.pem
+*.key
+*.cert
+*.crt
+secrets/
+.vercel
+.netlify
+.firebase/
+

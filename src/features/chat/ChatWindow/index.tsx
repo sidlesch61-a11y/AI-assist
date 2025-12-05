@@ -1,0 +1,89 @@
+/** Chat window component - main chat interface */
+
+import React from "react";
+import { ChatHeader } from "./ChatHeader";
+import { MessageList } from "./MessageList";
+import { ChatInput } from "./ChatInput";
+import { EmptyChatState } from "../../../components/chat/EmptyChatState";
+import { useChat } from "../context/useChat";
+import { useWorkshopStore } from "../../../stores/workshop.store";
+import type { ChatThread } from "../../../types/chat.types";
+
+interface ChatWindowProps {
+  thread: ChatThread | null;
+  onCreateSession?: () => void;
+}
+
+export function ChatWindow({ thread, onCreateSession }: ChatWindowProps) {
+  const { currentWorkshop } = useWorkshopStore();
+  const {
+    messages,
+    isLoading,
+    typingUsers,
+    error,
+    sendMessage,
+    errorCodes,
+    setErrorCodes,
+    estimatedTokens,
+    remainingTokens,
+    tokenUsage,
+  } = useChat();
+
+  if (!thread) {
+    return <EmptyChatState onCreateSession={onCreateSession} />;
+  }
+
+  return (
+    <div className="flex flex-col h-full">
+      {/* Header */}
+      <ChatHeader
+        licensePlate={thread.license_plate}
+        make={thread.vehicle_context?.match(/Make: (.+)/)?.[1]}
+        model={thread.vehicle_context?.match(/Model: (.+)/)?.[1]}
+        year={thread.vehicle_context?.match(/Year: (.+)/)?.[1] ? parseInt(thread.vehicle_context.match(/Year: (.+)/)?.[1] || "0") : undefined}
+        currentKm={thread.vehicle_km || undefined}
+        engineType={thread.vehicle_context?.match(/Engine Type: (.+)/)?.[1]}
+        errorCodes={thread.error_codes || undefined}
+        status={thread.status as "active" | "resolved" | "archived"}
+        threadId={thread.id}
+        createdAt={thread.created_at}
+        tokenUsage={tokenUsage}
+      />
+
+      {/* Messages */}
+      <MessageList
+        messages={messages}
+        isLoading={isLoading}
+        typingUsers={typingUsers}
+      />
+
+      {/* Input */}
+      <ChatInput
+        onSend={sendMessage}
+        disabled={isLoading}
+        estimatedTokens={estimatedTokens}
+        remainingTokens={remainingTokens}
+        tokenLimit={currentWorkshop?.monthly_token_limit || 10000}
+        errorCodes={errorCodes}
+        onErrorCodesChange={setErrorCodes}
+        vehicleData={{
+          license_plate: thread.license_plate,
+          make: thread.vehicle_context?.match(/Make: (.+)/)?.[1],
+          model: thread.vehicle_context?.match(/Model: (.+)/)?.[1],
+          year: thread.vehicle_context?.match(/Year: (.+)/)?.[1]
+            ? parseInt(thread.vehicle_context.match(/Year: (.+)/)?.[1] || "0")
+            : undefined,
+          current_km: thread.vehicle_km || undefined,
+        }}
+      />
+
+      {/* Error Display */}
+      {error && (
+        <div className="px-6 py-3 bg-error-500/10 border-t border-error-500/30">
+          <p className="text-sm text-error-400">{error}</p>
+        </div>
+      )}
+    </div>
+  );
+}
+

@@ -1,0 +1,528 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Workshop customization CSS variables - Vibrant colors */
+    --workshop-primary: #3b82f6;
+    --workshop-primary-light: #60a5fa;
+    --workshop-primary-dark: #2563eb;
+    --workshop-accent: #22d3ee;
+    --workshop-accent-light: #67e8f9;
+    --workshop-accent-dark: #06b6d4;
+  }
+  
+  * {
+    @apply border-industrial-800;
+  }
+  
+  body {
+    @apply bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-50 antialiased;
+    background-attachment: fixed;
+    font-family: 'Inter', system-ui, sans-serif;
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.1) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(34, 211, 238, 0.1) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.1) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, rgba(34, 211, 238, 0.1) 0px, transparent 50%);
+  }
+
+  /* Custom scrollbar - Automotive theme */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-industrial-900;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-industrial-700 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary-600;
+  }
+}
+
+@layer components {
+  /* Glass morphism effects */
+  .glass {
+    @apply bg-industrial-900/80 backdrop-blur-xl border border-industrial-800/50;
+  }
+
+  .glass-strong {
+    @apply bg-industrial-900/95 backdrop-blur-2xl border border-industrial-700/50;
+  }
+
+  .glass-light {
+    @apply bg-industrial-800/60 backdrop-blur-lg border border-industrial-700/30;
+  }
+
+  /* Card components - Vibrant Modern Design */
+  .card {
+    @apply glass rounded-2xl p-6 shadow-xl border-slate-700/50;
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9));
+  }
+
+  .card-hover {
+    @apply card transition-all duration-300 hover:shadow-glow-primary hover:border-primary-500/50 hover:scale-[1.02] hover:bg-gradient-to-br hover:from-slate-800/95 hover:to-slate-900/95;
+  }
+
+  .card-industrial {
+    @apply bg-gradient-to-br from-slate-800/90 to-slate-900/90 border border-slate-700/50 rounded-xl p-4 shadow-xl backdrop-blur-sm;
+  }
+
+  /* Typography utilities */
+  .text-gradient-primary {
+    @apply bg-gradient-to-r from-primary-400 via-accent-400 to-primary-500 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-warning {
+    @apply bg-gradient-to-r from-warning-400 to-warning-500 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-success {
+    @apply bg-gradient-to-r from-success-400 to-success-500 bg-clip-text text-transparent;
+  }
+
+  /* DTC Badge - Default (Warning/Amber) */
+  .dtc-badge {
+    font-family: 'JetBrains Mono', monospace;
+    background: #FEF3C7;
+    color: #92400E;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    border: 1px solid #FBBF24;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* DTC Badge - Critical (Error/Red) */
+  .dtc-badge.critical {
+    background: #FEE2E2;
+    color: #991B1B;
+    border-color: #DC2626;
+  }
+
+  /* Legacy diagnostic-code classes for backward compatibility */
+  .diagnostic-code {
+    font-family: 'JetBrains Mono', monospace;
+    background: #FEF3C7;
+    color: #92400E;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    border: 1px solid #FBBF24;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .diagnostic-code-error {
+    font-family: 'JetBrains Mono', monospace;
+    background: #FEE2E2;
+    color: #991B1B;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    border: 1px solid #DC2626;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Status indicators */
+  .status-badge {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium;
+  }
+
+  .status-active {
+    @apply status-badge bg-success-500/20 text-success-400 border border-success-500/30;
+  }
+
+  .status-pending {
+    @apply status-badge bg-warning-500/20 text-warning-400 border border-warning-500/30;
+  }
+
+  .status-resolved {
+    @apply status-badge bg-primary-500/20 text-primary-400 border border-primary-500/30;
+  }
+
+  .status-error {
+    @apply status-badge bg-error-500/20 text-error-400 border border-error-500/30;
+  }
+
+  /* Button variants */
+  .btn-industrial {
+    @apply px-4 py-2 bg-industrial-700 hover:bg-industrial-600 text-industrial-100 rounded-lg transition-colors border border-industrial-600;
+  }
+
+  .btn-primary {
+    @apply px-4 py-2 bg-primary-600 hover:bg-primary-500 text-white rounded-lg transition-colors shadow-glow;
+  }
+
+  .btn-warning {
+    @apply px-4 py-2 bg-warning-500 hover:bg-warning-400 text-white rounded-lg transition-colors;
+  }
+
+  .btn-success {
+    @apply px-4 py-2 bg-success-500 hover:bg-success-400 text-white rounded-lg transition-colors;
+  }
+
+  /* Workshop button with feedback */
+  .btn-workshop {
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+  }
+
+  .btn-workshop:hover {
+    border-color: #1A56DB;
+    background-color: #EFF6FF;
+  }
+
+  .btn-workshop:active {
+    transform: scale(0.98);
+  }
+
+  /* Workshop Primary Button */
+  .btn-workshop-primary {
+    @apply bg-primary-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-primary-600 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-industrial-950 shadow-lg hover:shadow-glow;
+  }
+
+  /* Workshop Card */
+  .card-workshop {
+    @apply bg-industrial-900 rounded-xl border border-industrial-700 shadow-industrial hover:shadow-glow transition-shadow;
+  }
+
+  /* DTC Badge - Workshop Style */
+  .badge-dtc {
+    @apply font-mono text-sm px-3 py-1 rounded-full border bg-warning-500/10 text-warning-400 border-warning-500/30;
+  }
+
+  /* Input styling */
+  .input-industrial {
+    @apply w-full px-4 py-2 bg-industrial-800/50 border border-industrial-700 rounded-lg text-industrial-100 placeholder:text-industrial-500 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500 transition-colors;
+  }
+
+  /* Gradient borders */
+  .gradient-border {
+    @apply relative;
+  }
+
+  .gradient-border::before {
+    content: "";
+    @apply absolute inset-0 rounded-xl bg-gradient-to-r from-primary-500/20 via-accent-500/20 to-primary-500/20 blur-sm -z-10;
+  }
+
+  /* Workshop panel styling */
+  .workshop-panel {
+    @apply glass-strong rounded-lg p-4 border-l-4 border-primary-500;
+  }
+
+  /* Vehicle info panel */
+  .vehicle-info {
+    @apply card-industrial space-y-2;
+  }
+
+  /* Token usage display */
+  .token-meter {
+    @apply w-full h-2.5 bg-industrial-800 rounded-full overflow-hidden relative;
+  }
+
+  .token-meter-fill {
+    @apply h-full transition-all duration-300 rounded-full;
+  }
+
+  .token-meter-low {
+    @apply bg-warning-500;
+  }
+
+  .token-meter-warning {
+    @apply bg-warning-500;
+  }
+
+  .token-meter-critical {
+    @apply bg-error-500;
+  }
+
+  .token-meter-ok {
+    @apply bg-success-500;
+  }
+
+  /* Token meter hover tooltip */
+  .token-meter-tooltip {
+    @apply absolute bottom-full left-0 mb-2 z-50;
+  }
+
+  /* Chat Message Bubbles - Vibrant Modern Design */
+  .msg-technician {
+    @apply bg-gradient-to-br from-primary-500 via-primary-600 to-primary-700 text-white rounded-2xl max-w-[85%] ml-auto px-5 py-3.5 shadow-lg shadow-primary-500/30 border border-primary-400/20;
+  }
+
+  .msg-ai {
+    @apply bg-slate-50 text-slate-900 border border-slate-200 rounded-2xl max-w-[85%] px-5 py-3.5 shadow-lg border-l-4 border-success-500;
+  }
+
+  /* Dark theme variant for AI messages - Vibrant */
+  .msg-ai-dark {
+    @apply bg-gradient-to-br from-slate-800 to-slate-900 text-slate-100 border border-slate-700/50 rounded-2xl max-w-[85%] px-5 py-3.5 shadow-xl border-l-4 border-success-500 backdrop-blur-sm;
+  }
+
+  .msg-system {
+    @apply bg-warning-100 text-warning-900 border border-warning-300 rounded-xl text-center text-sm px-4 py-2;
+  }
+
+  /* Dark theme variant for system messages */
+  .msg-system-dark {
+    @apply bg-warning-500/20 text-warning-400 border border-warning-500/30 rounded-xl text-center text-sm px-4 py-2;
+  }
+}
+
+@layer utilities {
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  /* Performance optimizations */
+  .will-change-transform {
+    will-change: transform;
+  }
+
+  .will-change-opacity {
+    will-change: opacity;
+  }
+
+  /* Smooth scrolling */
+  .smooth-scroll {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Hardware acceleration */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  /* Responsive text */
+  .text-responsive {
+    font-size: clamp(0.875rem, 2vw, 1rem);
+  }
+
+  .text-responsive-lg {
+    font-size: clamp(1rem, 3vw, 1.5rem);
+  }
+
+  /* Touch-friendly targets for workshop gloves */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 12px 16px;
+  }
+
+  /* Focus visible for accessibility */
+  .focus-visible-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-industrial-950;
+  }
+
+  /* Swipeable chat history */
+  .swipeable-list {
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+  }
+
+  .swipeable-item {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  /* Subtle but clear interactions */
+  .hover-lift {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  /* AI Typing Indicator */
+  .typing-indicator {
+    display: flex;
+    gap: 4px;
+    padding: 12px;
+    background: #F9FAFB;
+    border-radius: 12px;
+  }
+
+  /* Dark theme variant */
+  .typing-indicator-dark {
+    display: flex;
+    gap: 4px;
+    padding: 12px;
+    background: #1F2937;
+    border-radius: 12px;
+  }
+
+  .typing-dot {
+    width: 8px;
+    height: 8px;
+    background: #6B7280;
+    border-radius: 50%;
+    animation: typing 1.4s infinite;
+  }
+
+  /* Dark theme typing dot */
+  .typing-dot-dark {
+    width: 8px;
+    height: 8px;
+    background: #9CA3AF;
+    border-radius: 50%;
+    animation: typing 1.4s infinite;
+  }
+
+  .typing-dot:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .typing-dot:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+
+  .typing-dot-dark:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .typing-dot-dark:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+}
+
+/* Keyframe animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px rgba(0, 115, 230, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(0, 115, 230, 0.8);
+  }
+}
+
+@keyframes typing {
+  0%, 60%, 100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-6px);
+  }
+}
+
+/* Cross-browser compatibility */
+@supports not (backdrop-filter: blur(10px)) {
+  .glass {
+    background: rgba(30, 31, 35, 0.95);
+  }
+  
+  .glass-strong {
+    background: rgba(30, 31, 35, 0.98);
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: white;
+    color: black;
+  }
+}
+
+/* Accessibility: Focus states for keyboard navigation */
+:focus-visible {
+  outline: 3px solid #1A56DB;
+  outline-offset: 2px;
+}
+
+/* Accessibility: High contrast mode support */
+@media (prefers-contrast: high) {
+  .msg-technician {
+    background: #1A56DB;
+    border: 2px solid white;
+  }
+
+  .msg-ai-dark {
+    background: #1F2937;
+    border: 2px solid white;
+  }
+
+  .msg-system-dark {
+    background: #92400E;
+    border: 2px solid white;
+    color: white;
+  }
+
+  .btn-primary {
+    background: #1A56DB;
+    border: 2px solid white;
+  }
+
+  .card-industrial {
+    border: 2px solid white;
+  }
+}
+
+/* Accessibility: Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
