@@ -29,7 +29,7 @@ export interface TokenRemainingResponse {
 export async function getRemainingTokens(
   workshopId: string
 ): Promise<TokenRemainingResponse> {
-  const response = await axiosClient.get(`/v1/tokens/remaining`, {
+  const response = await axiosClient.get(`/api/v1/tokens/remaining`, {
     params: { workshop_id: workshopId },
   });
   return response.data;
@@ -44,7 +44,7 @@ export async function validateTokens(
   user_ok: boolean;
   remaining: any;
 }> {
-  const response = await axiosClient.post(`/v1/tokens/validate`, {
+  const response = await axiosClient.post(`/api/v1/tokens/validate`, {
     workshop_id: workshopId,
     estimated_tokens: estimatedTokens,
   });
